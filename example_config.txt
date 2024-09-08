@@ -1,0 +1,130 @@
+!
+! Last configuration change at 19:37:01 UTC Sun Feb 10 1901
+!
+version 15.6
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname GW01
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+wan mode ethernet
+!
+!
+!
+!
+!
+!
+ip domain name home.local
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username cisco privilege 15 secret 5 $1$urrC$xtS0hjgA7AXekoeVv8TvQ.
+!
+!
+controller VDSL 0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback70
+ ip address 7.7.7.7 255.255.255.255
+!
+interface Tunnel10
+ ip address 30.30.30.30 255.255.255.0
+!
+interface Tunnel69
+ no ip address
+!
+interface ATM0
+ no ip address
+ shutdown
+ no atm ilmi-keepalive
+!
+interface Ethernet0
+ no ip address
+ shutdown
+!
+interface FastEthernet0
+ switchport mode trunk
+ no ip address
+!
+interface FastEthernet1
+ switchport mode trunk
+ no ip address
+!
+interface FastEthernet2
+ switchport mode trunk
+ no ip address
+!
+interface FastEthernet3
+ switchport mode trunk
+ no ip address
+!
+interface GigabitEthernet0
+ no ip address
+!
+interface GigabitEthernet1
+ ip address 10.13.13.13 255.255.255.0
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ ip address 10.3.3.254 255.255.255.0
+!
+ip default-gateway 10.3.3.1
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+ip route 0.0.0.0 0.0.0.0 10.3.3.1
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+access-list 100 permit ip 10.3.3.0 0.0.0.255 any
+!
+!
+line con 0
+ no modem enable
+line aux 0
+line vty 0 4
+ access-class 100 in
+ login local
+ transport input ssh
+!
+scheduler allocate 60000 1000
+!
+end
