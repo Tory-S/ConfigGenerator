@@ -1,5 +1,4 @@
 import tkinter as tk
-import jinja2
 
 nfh = open("New config.txt", "w")
 
@@ -18,7 +17,7 @@ def save_details():
     print("WAN IP: " + wan_address)
     print("SNMP Location: " + snmp_location)
 
-    fh = open("config.txt", mode="r")
+    fh = open("example_config.txt", mode="r")
 
     for line in fh:
         line = line.replace("< HOSTNAME >", str(hostname))
