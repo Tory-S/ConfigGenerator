@@ -1,9 +1,12 @@
 import tkinter as tk
+from tkinter import *
 
 nfh = open("New config.txt", "w")
 
 
-
+def open_vlan_window():
+    vlan_window = Toplevel()
+    vlan_window.title("Extra window for VLANS")
 
 
 def save_details():
@@ -71,7 +74,8 @@ loghost.grid(row=4, column=1)
 do_stuff = tk.Button(root, text="Generate Config", command=save_details)
 do_stuff.grid(row=5, column=0)
 
-
+vlan_check = tk.Checkbutton(root,text="Additional VLAN config required",command=open_vlan_window)
+vlan_check.grid(row=5, column=1)
 
 root.mainloop()
 
