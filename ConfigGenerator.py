@@ -11,11 +11,13 @@ def save_details():
     lan_address = lan_ip.get()
     wan_address = wan_ip.get()
     snmp_location = location.get()
+    log_host = loghost.get()
 
     print("Router name: " + hostname)
     print("LAN IP: " + lan_address)
     print("WAN IP: " + wan_address)
     print("SNMP Location: " + snmp_location)
+    print("Logging host: " + log_host)    
 
     fh = open("example_config.txt", mode="r")
 
@@ -23,6 +25,7 @@ def save_details():
         line = line.replace("< HOSTNAME >", str(hostname))
         line = line.replace("< LAN IP >", str(lan_address))
         line = line.replace("< WAN IP >", str(wan_address))
+        line = line.replace("< SNMP LOCATION >", str(wan_address))
         nfh.write(line)
 
     
@@ -57,8 +60,16 @@ label4.grid(row=3, column=0)
 location = tk.Entry(root)
 location.grid(row=3, column=1)
 
+label5 = tk.Label(root, text="Logging host:")
+label5.grid(row=4, column=0)
+
+loghost = tk.Entry(root)
+loghost.grid(row=4, column=1)
+
+
+
 do_stuff = tk.Button(root, text="Generate Config", command=save_details)
-do_stuff.grid(row=4, column=0)
+do_stuff.grid(row=5, column=0)
 
 
 
